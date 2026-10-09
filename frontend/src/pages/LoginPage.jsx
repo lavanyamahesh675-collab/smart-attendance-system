@@ -61,7 +61,7 @@ export default function LoginPage() {
       {/* Background Campus Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-1000"
-        style={{ backgroundImage: `url('/campus_bg.png')` }}
+        style={{ backgroundImage: `url('campus_bg.png'), url('/campus_bg.png')` }}
       />
       {/* Soft Dark Vignette & Blur Overlay for high readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/65 backdrop-blur-[3px]" />
