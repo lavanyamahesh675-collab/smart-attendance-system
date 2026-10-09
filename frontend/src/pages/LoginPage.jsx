@@ -40,10 +40,20 @@ export default function LoginPage() {
     }
   };
 
-  const setDemoCredential = (u, p) => {
+  const quickLogin = async (u, p) => {
     setUsername(u);
     setPassword(p);
     setErrorMsg('');
+    setLoading(true);
+    try {
+      const data = await loginUser(u, p);
+      showSuccess(`Welcome back, ${data.fullName}!`);
+      navigate('/dashboard');
+    } catch (err) {
+      setErrorMsg("Login error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -80,24 +90,24 @@ export default function LoginPage() {
           <div className="grid grid-cols-3 gap-1.5 text-center">
             <button
               type="button"
-              onClick={() => setDemoCredential('admin', 'Admin@123')}
-              className="py-1.5 px-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm"
+              onClick={() => quickLogin('admin', 'Admin@123')}
+              className="py-1.5 px-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1"
             >
-              Admin
+              ⚡ Admin
             </button>
             <button
               type="button"
-              onClick={() => setDemoCredential('faculty', 'Faculty@123')}
-              className="py-1.5 px-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm"
+              onClick={() => quickLogin('faculty', 'Faculty@123')}
+              className="py-1.5 px-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1"
             >
-              Faculty
+              ⚡ Faculty
             </button>
             <button
               type="button"
-              onClick={() => setDemoCredential('student', 'Student@123')}
-              className="py-1.5 px-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm"
+              onClick={() => quickLogin('student', 'Student@123')}
+              className="py-1.5 px-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1"
             >
-              Student
+              ⚡ Student
             </button>
           </div>
         </div>
